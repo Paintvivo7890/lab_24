@@ -64,3 +64,56 @@ void List::append(int d){
 }
 
 //Write List::remove() here
+void List::remove(int idx) {
+    if (root == NULL || idx < 0) return; 
+
+    Node *current = root;
+    if (idx == 0) { 
+        root = root->next;
+        delete current;
+        return;
+    }
+
+    Node *prev = nullptr;
+    for (int i = 0; i < idx; i++) {
+        prev = current;
+        current = current->next;
+        if (current == NULL) return;
+    }
+
+    prev->next = current->next;
+    delete current;
+}
+
+int main(){
+
+    List myList = {0,0};
+
+    myList.append(5);
+    myList.append(7);
+    myList.append(11);
+    myList.append(4);
+    myList.append(12);
+    myList.append(45);
+
+    myList.insert(29,2);
+    myList.insert(33,3);
+    myList.insert(77,5);
+    myList.insert(69,0);
+
+    myList.show();
+    cout << "\n";
+
+    myList.remove(2);
+    myList.show();
+    cout << "\n";
+
+    myList.remove(4);
+    myList.show();
+    cout << "\n";
+
+    myList.remove(0);
+    myList.show();
+    cout << "\n";
+
+}
